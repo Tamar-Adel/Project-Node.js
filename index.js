@@ -61,7 +61,7 @@ app.use(errorHandling);
 
 // ============== 4 ===================
 // הרצת השרת
-const port = process.env.PORT || 2000;
+const port = process.env.PORT || 5555;
 app.listen(port, () => {
   console.log("server running at http://localhost:" + port);
 });
