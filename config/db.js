@@ -1,21 +1,17 @@
 const mongoose = require('mongoose');
 
-const DB_URL = process.env.MONGODB_URI || 'mongo://localhost:27017/mydb';
 
-async function connectToDB() {
-    // db תנסה להתחבר ל
-    try { // try/then
+const env=require('dotenv')
+env.config()
+
+const DB_URL =process.env.MONGODB_URI//לשאול את המתרגלתמד
+
+exports.connectToDB = async function connectToDB() {
+    try {
         // התחברות לדטהבייס
         await mongoose.connect(DB_URL);
-        console.log('mongo connected'); // אם הצליח - הגיע לשורה הזו
-    } catch (error) { // catch
-        console.log('mongo failed', error); // אם היתה שגיאה בהתחברות
+        console.log('mongo connected');
+    } catch (error) {
+        console.log('mongo failed', error);
     }
-
-    // mongoose.connect(DB_URL)
-    //     .then(()=>console.log('mongo connected'))
-    //     .catch(error => console.log('mongo failed', error))
-
-    // console.log('hello');
 }
-exports.connectToDB = connectToDB;
