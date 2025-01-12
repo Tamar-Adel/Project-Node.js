@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const recipies=require('../models/recipies.model')
 
 const categorySchema=new mongoose.Schema({
-    code: { type: String, required: true, unique: true },
     desc:{
     type: String,  
     required:true,

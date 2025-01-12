@@ -91,6 +91,20 @@ exports.getrecipiOnlyUser = async function (req, res, next) {
 // הוספת מתכון
 exports.addrecipe = async function (req, res, next) {
   const newmyrecipe = new recipies(req.body);
+  const category=await categories.findOne({desc:req.params.desc})
+  if(category){
+        category.recipeCount++;
+        category.save()
+        newmyrecipe.category=category._id//recype
+
+  }
+  else{
+    const newCategory=new categories({desc:req.params.desc,recipeCount:1})
+    newCategory.save()
+    newmyrecipe.category=category._id//recype
+
+  }
+
   console.log(newmyrecipe)
   try {
     await newmyrecipe.save(); // שמירה בדטהבייס בודקת תקינות

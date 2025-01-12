@@ -8,7 +8,7 @@ router.get('/', getAllCategories);
  
 router.get('/with-recipes',getCategoriesWithRecipes);
 
-router.get('/id',getCategoryByCode);
+router.get('/:id',getCategoryByCode);
 
 module.exports = router;
 
