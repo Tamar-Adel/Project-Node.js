@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const env=require('dotenv')
 env.config()
-const usersSchema = new mongoose.Schema({
+const usersSchema =  mongoose.Schema({
 
     name:String,
     password:{ type: String, required: true },
@@ -29,12 +29,6 @@ this.password=newPass;
 })
 
 
-module.exports= mongoose.model('users',usersSchema);
+module.exports= mongoose.model('User',usersSchema);
 
-// פונקציה ליצירת טוקן עם הרשאות
-module.exports.generateToken = function (user) {
-    const secretKey = process.env.JWT_SECRET; // מחרוזת סודית פרטית לשרת שמאפשרת הצפנה של המידע
-    const token = jwt.sign({ id: user._id, role: user.role }, secretKey);
-    return token;
-    
-}
+

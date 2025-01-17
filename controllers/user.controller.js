@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
-const { User, generateToken } = require('../models/user.model');
-
+const User = require('../models/user.model');
+const {generateToken} =require('../middlwares/generateToken')
 
 
 module.exports = {
@@ -30,7 +30,7 @@ module.exports = {
     if (flag) {
       const token = generateToken(currentuser);
       currentuser.password = '****';
-      return res.json(currentuser,token);
+      return res.json(currentuser, token);
     }
     else {
 
@@ -41,13 +41,13 @@ module.exports = {
   // register  - POST (הוספת לקוח חדש)
   register: async (req, res) => {
     try {
-      const newUser = new User(req.body); 
+      const newUser = new User(req.body);
       await newUser.save()
       const token = generateToken(newUser);
-      res.json(" נרשמת בהצלחה ")
+      res.json(token)
     }
     catch (error) {
-      next({ error: error.message, status: 403 })
+      res.json({ error: error.message, status: 403 })
 
     }
   }

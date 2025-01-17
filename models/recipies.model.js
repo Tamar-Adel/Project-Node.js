@@ -17,7 +17,7 @@ const recipeSchema = new mongoose.Schema({
     // קשרי גומלין
     createdBy: {
         type: mongoose.Schema.Types.ObjectId, // קוד של מספור אוטומטי
-        ref: 'users' // לאיזה אוסף הקוד קשור - קוד מתוך טבלת משתמשים
+        ref: 'User' // לאיזה אוסף הקוד קשור - קוד מתוך טבלת משתמשים
     },
 
     addDate: {
